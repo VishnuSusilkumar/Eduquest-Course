@@ -119,6 +119,15 @@ export class CourseService implements ICourseService {
     }
   }
 
+  async editReview(data: any): Promise<Object | null> {
+    try {
+      const response = await this.repository.editReview(data);
+      return response;
+    } catch (e: any) {
+      throw new Error("Failed to edit review.");
+    }
+  }
+
   async searchCourses(searchTerm: string): Promise<Course[] | null> {
     try {
       const response = await this.repository.searchCourse(searchTerm);

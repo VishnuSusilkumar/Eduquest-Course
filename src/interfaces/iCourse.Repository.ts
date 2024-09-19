@@ -13,6 +13,7 @@ export interface ICourseRepository {
   addQuestion(data: any): Promise<Object | null>;
   addAnswer(data: any): Promise<Object | null>;
   addReview(data: any): Promise<Object | null>;
+  editReview(data: any): Promise<Object | null>;
   searchCourse(searchTerm: string): Promise<Course[] | null>;
   getUserCourses(userId: string[]): Promise<Course[] | null>;
   getCourseAnalytics(data: any): Promise<Object[] | null>;

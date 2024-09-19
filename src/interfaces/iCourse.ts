@@ -13,6 +13,7 @@ export interface ICourseService {
   addQuestion(data: any): unknown;
   addAnswer(data: any): unknown;
   addReview(data: any): unknown;
+  editReview(data: any): Promise<Object | null>
   searchCourses(searchTerm: string): Promise<Course[] | null>;
   getUserCourses(userId: string[]): Promise<Course[] | null>;
   getCourseAnalytics(data: any): unknown;

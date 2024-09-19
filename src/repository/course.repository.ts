@@ -144,6 +144,36 @@ export class CourseRepository implements ICourseRepository {
     }
   }
 
+  async editReview(data: any): Promise<Object | null> {
+    try {
+      const course = await CourseModel.findById(data.courseId);
+      if (!course) {
+        throw new Error("Course not found");
+      }
+      const reviews = course.reviews || [];
+      const review = reviews.find(
+        (rev: any) =>
+          rev._id.toString() === data.reviewId &&
+          rev.user._id.toString() === data.userId
+      );
+
+      if (!review) {
+        throw new Error("Review not found or unauthorized");
+      }
+      review.rating = data.updatedReview.rating;
+      review.comment = data.updatedReview.comment;
+      let avg = 0;
+      reviews.forEach((rev: any) => {
+        avg += rev.rating;
+      });
+      course.ratings = avg / reviews.length;
+      await course.save();
+      return { success: true, updatedReview: review };
+    } catch (e: any) {
+      throw new Error("DB Error while editing review");
+    }
+  }
+
   async searchCourse(searchTerm: string): Promise<Course[] | null> {
     try {
       const courses = await CourseModel.find({

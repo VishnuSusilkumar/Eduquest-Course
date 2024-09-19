@@ -66,6 +66,10 @@ export default class MessageHandler {
         response = await controller.addReview.bind(controller)(data);
         break;
 
+      case "edit-review":
+        response = await controller.editReview.bind(controller)(data);
+        break;
+
       case "search-courses":
         response = await controller.searchCourses.bind(controller)(data);
         break;

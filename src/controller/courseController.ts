@@ -111,6 +111,14 @@ export class CourseController {
     }
   };
 
+  editReview = async (data: any) => {
+    try {
+      return this.service.editReview(data);
+    } catch (e: any) {
+      console.log(e);
+    }
+  };
+
   searchCourses = async (searchTerm: string) => {
     try {
       return this.service.searchCourses(searchTerm);

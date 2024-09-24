@@ -137,8 +137,6 @@ export class CourseController {
 
   getCourseAnalytics = async (instructorId: string) => {
     try {
-      console.log("course instructorId:", instructorId);
-
       return this.service.getCourseAnalytics(instructorId);
     } catch (e: any) {
       console.log(e);

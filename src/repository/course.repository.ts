@@ -41,9 +41,7 @@ export class CourseRepository implements ICourseRepository {
 
   async getCourseWop(courseId: string): Promise<Course | null> {
     try {
-      const response = await CourseModel.findById(courseId).select(
-        "-courseData.videoUrl -courseData.links"
-      );
+      const response = await CourseModel.findById(courseId)
       return response;
     } catch (e: any) {
       throw new Error("DB Error");
@@ -53,7 +51,7 @@ export class CourseRepository implements ICourseRepository {
   async getAllCourses(): Promise<Course[] | null> {
     try {
       const response = await CourseModel.find().select(
-        "-courseData.videoUrl -courseData.links"
+        "-courseContentData -demoUrl -subtitleUrl"
       );
       return response;
     } catch (e: any) {
